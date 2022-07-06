@@ -32,25 +32,17 @@ int main(int argc, char* argv[])
     {
         printf("%i is not a leap year\n", input_year);
     }
-    return 1;
+    return 0;
     
 }
 
 bool leap_years(int year)
 {
-    float calc4 = year / 4.0;
-    float calc100 = year / 100.0;
-    float calc400 = year / 400.0;
-    
-    printf("calc4 %f\n", calc4);
-    printf("calc100 %f\n", calc100);
-    printf("calc400 %f\n", calc400);
-
-    if (is_int(calc4) && is_int(calc100) == false)
+    if (is_int(year / 4.0) && is_int(year / 100.0) == false)
     {
         return true;
     }
-    else if (is_int(calc100) && is_int(calc400) == true)
+    else if (is_int(year / 100.0) && is_int(year / 400.0) == true)
     {
         return true;
     }
@@ -72,20 +64,3 @@ bool is_int(float num)
         return false;
     }
 }   
-/*
-float f = 4.5886;
-if (f-(int)f == 0)
-     printf("yes\n");
-else printf("no\n");
-*/
-/*
-const leapYears = function (year) {
-  if (Number.isInteger(year / 4) && Number.isInteger(year / 100) === false) {
-    return true;
-  } else if (Number.isInteger(year / 100) && Number.isInteger(year / 400)) {
-    return true;
-  } else {
-    return false;
-  }
-};
-*/
