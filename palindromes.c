@@ -12,8 +12,8 @@ void remove_spaces(char* str);
 void reverse_str(char str[]);
 
 int main(int argC, char *argV[]) {
-    
     /* Allocate memory and check if okay. */
+
     char *input_str = malloc(MAX_STRING_SZ);
     if (input_str == NULL) {
         printf("No memory\n");
@@ -38,7 +38,7 @@ int main(int argC, char *argV[]) {
         return 1;
     }
 
-    // Push to new array if its a letter or space and make it lowercase
+    // Push to new array if its a letter or space and make lowercase
     for (int i = 0; i < strlen(input_str); i++)
     {
         if((input_str[i] >= 'a' && input_str[i] <= 'z') || (input_str[i] >= 'A' && input_str[i] <= 'Z') || (input_str[i] == ' '))
@@ -46,7 +46,7 @@ int main(int argC, char *argV[]) {
             str[i] = tolower(input_str[i]);
         }
     }
-    // remove spaces from new string. Free memory old string
+    // remove spaces from new string.
     remove_spaces(str);
     
     
