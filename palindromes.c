@@ -12,79 +12,90 @@ void remove_spaces(char* str);
 void reverse_str(char str[]);
 
 int main(int argC, char *argV[]) {
-    /* Allocate memory and check if okay. */
-
-    char *input_str = malloc(MAX_STRING_SZ);
-    if (input_str == NULL) {
-        printf("No memory\n");
-        return 1;
-    }
-    
-    // Ask user for input_str. 
-    printf("Enter word or sentence and check if its a palindrome: ");
-
-    // Get the input_str, with size limit.
-    fgets(input_str, MAX_STRING_SZ, stdin);
-
-    // Remove trailing newline, if there.
-    if ((strlen(input_str) > 0) && (input_str[strlen(input_str) - 1] == '\n'))
+    char again;
+    do
     {
-        input_str[strlen (input_str) - 1] = '\0';
-    }
+        /* Allocate memory and check if okay. */
 
-    char *str = malloc(strlen(input_str) + 1);
-    if (str == NULL) {
-        printf("No memory\n");
-        return 1;
-    }
-
-    // Push to new array if its a letter or space and make lowercase
-    for (int i = 0; i < strlen(input_str); i++)
-    {
-        if((input_str[i] >= 'a' && input_str[i] <= 'z') || (input_str[i] >= 'A' && input_str[i] <= 'Z') || (input_str[i] == ' '))
+        char *input_str = malloc(MAX_STRING_SZ);
+        if (input_str == NULL) 
         {
-            str[i] = tolower(input_str[i]);
+            printf("No memory\n");
+            return 1;
         }
-    }
-    // remove spaces from new string.
-    remove_spaces(str);
+    
+        // Ask user for input_str. 
+        printf("Enter word or sentence and check if its a palindrome: ");
+
+        // Get the input_str, with size limit.
+        fgets(input_str, MAX_STRING_SZ, stdin);
+
+        // Remove trailing newline, if there.
+        if ((strlen(input_str) > 0) && (input_str[strlen(input_str) - 1] == '\n'))
+        {
+            input_str[strlen (input_str) - 1] = '\0';
+        }
+
+        char *str = malloc(strlen(input_str) + 1);
+        if (str == NULL) {
+            printf("No memory\n");
+            return 1;
+        }
+
+        // Push to new array if its a letter or space and make lowercase
+        for (int i = 0; i < strlen(input_str); i++)
+        {
+            if((input_str[i] >= 'a' && input_str[i] <= 'z') || (input_str[i] >= 'A' && input_str[i] <= 'Z') || (input_str[i] == ' '))
+            {
+                str[i] = tolower(input_str[i]);
+            }
+        }
+        // remove spaces from new string.
+        remove_spaces(str);
     
     
-    // create new reverse string array
-    char *rev_str = malloc(strlen(str) + 1);
-    if (rev_str == NULL) {
-        printf("No memory\n");
-        return 1;
-       }
-    for (int i = 0; i < strlen(str); i++)
-    {
-        rev_str[i] = str[i];
-    }
+        // create new reverse string array
+        char *rev_str = malloc(strlen(str) + 1);
+        if (rev_str == NULL) 
+        {
+            printf("No memory\n");
+            return 1;
+        }
+        for (int i = 0; i < strlen(str); i++)
+        {
+            rev_str[i] = str[i];
+        }
     
-    // Make str and rev_str lowercase
+        reverse_str(rev_str);
 
+        //printf("%s\n", str);
+        //printf("%s\n", rev_str);
 
-
-    reverse_str(rev_str);
-
-    printf("%s\n", str);
-    printf("%s\n", rev_str);
-
-    // Check if strings are the same.
-    if(strcmp(str, rev_str) == 0)
-    {
-        printf("%s is a palindrome\n", input_str);
-    }
-    else
-    {
-         printf("%s is not a palindrome\n", input_str);
-    }
+        // Check if strings are the same.
+        if(strcmp(str, rev_str) == 0)
+        {
+            printf("%s is a palindrome\n", input_str);
+        }
+        else
+        {
+            printf("%s is not a palindrome\n", input_str);
+        }
     
 
-    /* Free memory and exit. */
-    free(input_str);
-    free(str);
-    free(rev_str);
+        /* Free memory and exit. */
+        free(input_str);
+        free(str);
+        free(rev_str);
+
+        // Try again
+        printf("Press y to try again\n");
+        scanf (" %c", &again);
+        
+        
+        
+
+    } while (again == 'y');
+    
     return 0;
 }
 
